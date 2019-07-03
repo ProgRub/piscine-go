@@ -1,3 +1,3 @@
 #! /bin/bash
 
-echo "$(ls -ltc -r -m -p)" | sed 's/, /,/g'
+echo "$(ls -ltc -m -p)" | sed 's/, /,/g'
