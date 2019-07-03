@@ -1,5 +1,6 @@
 #! /bin/bash
 
-find -name 'z*a!'
-find -name '*z'
-find -name 'a*'
+#find -name 'z*a!'
+#find -name '*z'
+#find -name 'a*'
+find -name 'a*' -o -name '*z' -o -name 'z*a!'
