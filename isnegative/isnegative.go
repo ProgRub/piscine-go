@@ -12,10 +12,10 @@ func IsNegative (nb int){
 	}
 }
 
-/* func main (){
+func main (){
 	IsNegative(8)
 	IsNegative(-2)
 	IsNegative(0)
 	IsNegative(1)
 	IsNegative(-1)
-} */
+}
