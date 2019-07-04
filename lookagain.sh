@@ -1,3 +1,3 @@
 #! /bin/bash
 
-echo "$(find -name '*.sh')" | cut -d "/" -f2 | cut -d "." -f1
+echo "$(find -name '*.sh')" | cut -d "." -f2
