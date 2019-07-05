@@ -29,10 +29,9 @@ func PrintNbr (n int) {
 				conta++
 			}
 		}else{
-			n=n*(-1)
 			z01.PrintRune(45)
 			for conta>=0{
-				vet[conta]=(n%10)+48
+				vet[conta]=-(n%10)+48
 				n=n/10
 				conta--
 			}
