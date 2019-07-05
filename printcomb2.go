@@ -1,4 +1,4 @@
-package main
+package piscine
 
 import (
 	"github.com/01-edu/z01"
@@ -29,8 +29,4 @@ for i:=48;i<58;i++{
 		}
 	}
 }
-}
-
-func main(){
-	PrintComb2()
 }
