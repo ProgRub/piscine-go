@@ -5,7 +5,6 @@ import (
 )
 
 func PrintCombN(n int){
-z01.PrintRune(rune(39))
 	vet:=make([]int,n)
 	indice:=0
 	cod:=48
@@ -17,7 +16,7 @@ z01.PrintRune(rune(39))
 	pos:=n-1
 	aux(n,vet, pos)
 	imprime(vet,n)
-z01.PrintRune(rune(39))
+z01.PrintRune('\n')
 }
 
 func aux(n int, v []int, pos int){
@@ -26,6 +25,7 @@ func aux(n int, v []int, pos int){
 	}else{
 		imprime(v,n)
 		z01.PrintRune(',')
+		z01.PrintRune(' ')
 		if v[pos]<57{
 			v[pos]++
 			aux(n,v, pos)
