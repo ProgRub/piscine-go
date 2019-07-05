@@ -1,4 +1,4 @@
-package main
+package piscine
 
 import "fmt"
 
@@ -7,9 +7,4 @@ func PrintStr(str string) {
 		fmt.Printf("%v", string(ch))
 	}
 	fmt.Printf("\n")
-}
-
-func main() {
-	str := "Hello World!"
-	PrintStr(str)
 }
