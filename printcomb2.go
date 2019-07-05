@@ -1,4 +1,4 @@
-package piscine
+package main
 
 import (
 	"github.com/01-edu/z01"
@@ -16,7 +16,7 @@ for i:=48;i<58;i++{
 				z01.PrintRune(rune(k))	
 				z01.PrintRune(rune(l))
 				z01.PrintRune('\n')			
-			} else if i <= k && j < l{
+			} else if i*10+j<k*10+l{
 				z01.PrintRune(rune(i))
 				z01.PrintRune(rune(j))
 				z01.PrintRune(' ')
@@ -29,4 +29,8 @@ for i:=48;i<58;i++{
 		}
 	}
 }
+}
+
+func main(){
+	PrintComb2()
 }
