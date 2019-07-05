@@ -1,13 +1,5 @@
-package main
-
-import "fmt"
+package piscine
 
 func StrLen(str string) int {
 	return len([]rune(str))
-}
-
-func main() {
-	str := "Hèllo!"
-	nb := StrLen(str)
-	fmt.Println(nb)
 }
