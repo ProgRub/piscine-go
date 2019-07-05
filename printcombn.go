@@ -5,7 +5,8 @@ import (
 )
 
 func PrintCombN(n int){
-z01.PrintRune(rune(39))make([]int,n)
+z01.PrintRune(rune(39))
+	vet:=make([]int,n)
 	indice:=0
 	cod:=48
 	for indice<n{
