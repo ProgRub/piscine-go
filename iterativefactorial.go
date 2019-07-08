@@ -1,7 +1,5 @@
 package piscine
 
-import "fmt"
-
 func IterativeFactorial(nb int) int {
 	if nb >= 0 {
 		result := 1
@@ -12,3 +10,4 @@ func IterativeFactorial(nb int) int {
 		return result
 	}
 	return 0
+}
