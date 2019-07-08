@@ -1,10 +1,20 @@
 package piscine
 
+import (
+	"math/bits"
+)
+
+const (
+	IntSize = bits.UintSize - 1
+	MaxInt  = 1<<IntSize - 1
+)
+
 func FindNextPrime(nb int) int {
-	if nb > 1 && nb < 9223372036854775807 {
+
+	if nb > 1 && nb < MaxInt {
 		i := nb
 		for i > 0 {
-			if nb < 9223372036854775807 {
+			if nb < MaxInt {
 				if IsPrime(i) {
 					return i
 				}
