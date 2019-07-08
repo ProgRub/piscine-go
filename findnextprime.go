@@ -11,13 +11,18 @@ const (
 
 func FindNextPrime(nb int) int {
 	if nb > 1 && nb < MaxInt {
-		i := nb
-		for i > 0 {
+		i := 0
+		if nb%2 == 0 {
+			i = nb + 1
+		} else {
+			i = nb
+		}
+		for true {
 			if i < MaxInt {
 				if IsPrime(i) {
 					return i
 				}
-				i++
+				i = i + 2
 			} else {
 				return 0
 			}
