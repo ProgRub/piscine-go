@@ -1,13 +1,17 @@
 package piscine
 
 func FindNextPrime(nb int) int {
-	if nb > 1 {
+	if nb > 1 && nb < 9223372036854475807 {
 		i := nb
 		for i > 0 {
-			if IsPrime(i) {
-				return i
+			if nb < 9223372036854475807 {
+				if IsPrime(i) {
+					return i
+				}
+				i++
+			} else {
+				return 0
 			}
-			i++
 		}
 	}
 	return 2
