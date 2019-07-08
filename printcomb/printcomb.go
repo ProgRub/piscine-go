@@ -5,33 +5,22 @@ import (
 )
 
 func PrintComb(){
-i:=0
-j:=0
-k:=0
-decI:=48
-decJ:=48
-decK:=48
-for i<10{
-if i < j && j < k{
-	z01.PrintRune(rune(decI))
-	z01.PrintRune(rune(decJ))
-	z01.PrintRune(rune(decK))
-	z01.PrintRune(',')
-	z01.PrintRune(' ')
-}
-k++
-decK++
-if k==10{
-	k=j
-	decK=decJ
-	j++
-	decJ++
-}
-if j==10{
-	j=i
-	decJ=decI
-	i++
-	decI++
-}
+for i:=48;i<58;i++{
+	for j:=48;j<58;j++{
+		for k:=48;k<58;k++{
+			if i==55 && j==56 && k==57 {
+				z01.PrintRune(rune(i))
+				z01.PrintRune(rune(j))
+				z01.PrintRune(rune(k))	
+				z01.PrintRune('\n')			
+			} else if i < j && j < k{
+				z01.PrintRune(rune(i))
+				z01.PrintRune(rune(j))
+				z01.PrintRune(rune(k))
+				z01.PrintRune(',')
+				z01.PrintRune(' ')
+			}
+		}
+	}
 }
 }
