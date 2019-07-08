@@ -10,11 +10,10 @@ const (
 )
 
 func FindNextPrime(nb int) int {
-
 	if nb > 1 && nb < MaxInt {
 		i := nb
 		for i > 0 {
-			if nb < MaxInt {
+			if i < MaxInt {
 				if IsPrime(i) {
 					return i
 				}
