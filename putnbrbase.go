@@ -4,6 +4,10 @@ import (
 	"github.com/01-edu/z01"
 )
 
+const (
+	MinInt = -MaxInt - 1
+)
+
 func PrintNbrBase(nbr int, base string) {
 	dividor := len([]rune(base))
 	aux := []rune(base)
@@ -28,8 +32,15 @@ func PrintNbrBase(nbr int, base string) {
 			}
 		}
 	}
+	tricky := false
+	carater := 0
 	if nbr < 0 {
 		z01.PrintRune('-')
+		if nbr == MinInt {
+			carater = nbr % dividor
+			nbr = nbr / dividor
+			tricky = true
+		}
 		nbr = -nbr
 	}
 	valor := nbr
@@ -38,10 +49,17 @@ func PrintNbrBase(nbr int, base string) {
 		nbr = nbr / dividor
 		tam++
 	}
+	if tricky {
+		tam++
+	}
 	final := make([]rune, tam)
 	pos := tam - 1
+	if tricky {
+		final[pos] = rune(-carater)
+		pos--
+	}
 	for valor > 0 {
-		carater := valor % dividor
+		carater = valor % dividor
 		final[pos] = rune(carater)
 		pos--
 		valor = valor / dividor
