@@ -16,6 +16,8 @@ func Capitalize(s string) string {
 				maiusculaAnterior = true
 			} else if int(aux[i]) >= 48 && int(aux[i]) <= 57 {
 				maiusculaAnterior = true
+			} else if int(aux[i]) >= 65 && int(aux[i]) <= 90 {
+				maiusculaAnterior = true
 			}
 			espacoAnterior = false
 		}
