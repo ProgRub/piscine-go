@@ -1,7 +1,12 @@
 package piscine
 
+import "strings"
+
 func Index(s string, toFind string) int {
-	auxString := []rune(s)
+	if toFind == "" {
+		return 0
+	}
+	/* auxString := []rune(s)
 	auxToFind := []rune(toFind)
 	pos := 0
 	beginning := pos
@@ -16,5 +21,6 @@ func Index(s string, toFind string) int {
 			return beginning
 		}
 	}
-	return -1
+	return -1 */
+	return strings.Index(s, toFind)
 }
