@@ -9,4 +9,5 @@ func PrintWordsTables(table []string) {
 	for i := range toPrint {
 		z01.PrintRune(toPrint[i])
 	}
+	z01.PrintRune('\n')
 }
