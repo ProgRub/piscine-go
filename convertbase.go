@@ -6,6 +6,7 @@ func ConvertBase(nbr, baseFrom, baseTo string) string {
 
 func PutNbrBase(nbr int, base string) string {
 	dividor := len([]rune(base))
+	aux := []rune(base)
 	carater := 0
 	valor := nbr
 	tam := 0
@@ -23,11 +24,7 @@ func PutNbrBase(nbr int, base string) string {
 	}
 	numero := ""
 	for i := range final {
-		if int(final[i]) >= 48 && int(final[i]) <= 57 {
-			numero = Concat(numero, string(final[i]+48))
-		} else {
-			numero = Concat(numero, string(final[i]))
-		}
+		numero = Concat(numero, string(rune(aux[final[i]])))
 	}
 	return numero
 }
