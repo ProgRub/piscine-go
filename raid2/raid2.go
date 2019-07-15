@@ -1,12 +1,15 @@
-package piscine
+package main
 
 import (
 	"fmt"
 	"os"
 )
 
-func Sudoku() {
+func main() {
 	arguments := os.Args
+	Sudoku(arguments)
+}
+func Sudoku(arguments []string) {
 	carateresCorretos := true
 	if len(arguments) > 10 {
 		carateresCorretos = false
