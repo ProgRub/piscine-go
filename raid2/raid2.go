@@ -18,11 +18,24 @@ func Sudoku(arguments []string) {
 	} else {
 		board := [9][9]int{}
 		for i := 1; i < 10; i++ {
-			for j := 0; j < 9; j++ {
-				if arguments[i][j] >= '1' && arguments[i][j] <= '9' {
-					board[i-1][j] = int(arguments[i][j] - 48)
-				} else if arguments[i][j] != '.' {
-					carateresCorretos = false
+			if len(arguments[i]) == 9 {
+				for j := 0; j < 9; j++ {
+					if arguments[i][j] >= '1' && arguments[i][j] <= '9' {
+						board[i-1][j] = int(arguments[i][j] - 48)
+					} else if arguments[i][j] != '.' {
+						carateresCorretos = false
+					}
+				}
+			} else {
+				carateresCorretos = false
+			}
+		}
+		for l := 0; l < 9; l++ {
+			for u := 0; u < 9; u++ {
+				for num := 1; num <= 9; num++ {
+					if !podeColocar(u, l, num, board) {
+						carateresCorretos = false
+					}
 				}
 			}
 		}
