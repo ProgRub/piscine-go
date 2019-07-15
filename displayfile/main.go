@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
 	"os"
 )
 
@@ -18,8 +17,14 @@ func main() {
 	} else if len(arguments) > 2 {
 		fmt.Println("Too many arguments")
 	} else {
-		texto, erro := ioutil.ReadFile(arguments[1])
-		check(erro)
+		ficheiro, err := os.Open(arguments[1])
+		check(err)
+		aux, ai := ficheiro.Stat()
+		check(ai)
+		tam := aux.Size()
+		texto := make([]byte, tam)
+		ficheiro.Read(texto)
 		fmt.Println(string(texto))
+		ficheiro.Close()
 	}
 }
