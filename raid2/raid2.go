@@ -24,6 +24,7 @@ func Sudoku(arguments []string) {
 						board[i-1][j] = int(arguments[i][j] - 48)
 					} else if arguments[i][j] != '.' {
 						carateresCorretos = false
+						break
 					}
 				}
 			} else {
@@ -32,9 +33,26 @@ func Sudoku(arguments []string) {
 		}
 		for l := 0; l < 9; l++ {
 			for u := 0; u < 9; u++ {
-				for num := 1; num <= 9; num++ {
-					if !podeColocar(u, l, num, board) {
-						carateresCorretos = false
+				if board[l][u] != 0 {
+					for i := 0; i < 9; i++ {
+						if board[l][i] == board[l][u] && i != u {
+							carateresCorretos = false
+							break
+						}
+					}
+					for i := 0; i < 9; i++ {
+						if board[i][u] == board[l][u] && i != l {
+							carateresCorretos = false
+							break
+						}
+					}
+					for i := l - l%3; i <= l-l%3+2; i++ {
+						for j := u - u%3; j <= u-u%3+2; j++ {
+							if board[i][j] == board[l][u] && i != l && j != u {
+								carateresCorretos = false
+								break
+							}
+						}
 					}
 				}
 			}
