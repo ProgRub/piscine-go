@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
 	"os"
 )
 
@@ -17,12 +16,20 @@ func main() {
 		fmt.Println(in)
 	} else {
 		for i := 1; i < len(arguments); i++ {
-			texto, erro := ioutil.ReadFile(arguments[i])
-			if erro != nil {
-				panic(erro)
+			ficheiro, err := os.Open(arguments[i])
+			if err != nil {
+				panic(err)
 			}
+			aux, ai := ficheiro.Stat()
+			if ai != nil {
+				panic(ai)
+			}
+			tam := aux.Size()
+			texto := make([]byte, tam)
+			ficheiro.Read(texto)
 			fmt.Println(string(texto))
 			fmt.Println("")
+			ficheiro.Close()
 		}
 	}
 }
