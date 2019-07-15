@@ -108,3 +108,5 @@ func posicaoVazia(board [9][9]int, row, column *int) bool {
 	}
 	return false
 }
+
+//
