@@ -10,8 +10,8 @@ func main() {
 	arguments := os.Args
 	if len(arguments) == 1 {
 		reader := bufio.NewReader(os.Stdin)
-		util, err := reader.ReadString('\n')
-		if err != nil && util != "" {
+		util, err := reader.ReadString(' ')
+		if err != nil && util != "\n" {
 			fmt.Println(err.Error())
 		} else {
 			if util != "\n" {
