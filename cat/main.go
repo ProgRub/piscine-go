@@ -22,7 +22,7 @@ func main() {
 		} */
 		scanner := bufio.NewScanner(os.Stdin)
 		scanner.Scan()
-		fmt.Println(strings.Replace(scanner.Text(), "\n", "", -1))
+		fmt.Print(strings.Replace(scanner.Text(), "\n", "", -1))
 	} else {
 		for i := 1; i < len(arguments); i++ {
 			ficheiro, e := os.Open(arguments[i])
