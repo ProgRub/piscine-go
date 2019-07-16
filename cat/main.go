@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"os"
 )
@@ -8,12 +9,16 @@ import (
 func main() {
 	arguments := os.Args
 	if len(arguments) == 1 {
-		var in string
-		_, err := fmt.Scanln(&in)
-		if err != nil {
+		reader := bufio.NewReader(os.Stdin)
+		util, err := reader.ReadString('\n')
+		if err != nil && util != "" {
 			fmt.Println(err.Error())
 		} else {
-			fmt.Println(in)
+			if int([]rune(util)[0]) == 10 {
+				fmt.Println()
+			} else {
+				fmt.Println(util)
+			}
 		}
 	} else {
 		for i := 1; i < len(arguments); i++ {
