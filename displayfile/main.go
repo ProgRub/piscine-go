@@ -15,17 +15,12 @@ func main() {
 		ficheiro, err := os.Open(arguments[1])
 		if err != nil {
 			fmt.Println(err.Error())
-			return
+		} else {
+			aux, _ := ficheiro.Stat()
+			texto := make([]byte, aux.Size())
+			ficheiro.Read(texto)
+			fmt.Println(string(texto))
+			ficheiro.Close()
 		}
-		aux, ai := ficheiro.Stat()
-		if ai != nil {
-			fmt.Println(ai.Error())
-			return
-		}
-		tam := aux.Size()
-		texto := make([]byte, tam)
-		ficheiro.Read(texto)
-		fmt.Println(string(texto))
-		ficheiro.Close()
 	}
 }
