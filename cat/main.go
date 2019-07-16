@@ -11,25 +11,23 @@ func main() {
 		var in string
 		_, err := fmt.Scanln(&in)
 		if err != nil {
-			panic(err)
+			fmt.Println(err.Error())
+		} else {
+			fmt.Println(in)
 		}
-		fmt.Println(in)
 	} else {
 		for i := 1; i < len(arguments); i++ {
-			ficheiro, err := os.Open(arguments[i])
-			if err != nil {
-				panic(err)
+			ficheiro, e := os.Open(arguments[i])
+			if e != nil {
+				fmt.Println(e.Error())
+			} else {
+				aux, _ := ficheiro.Stat()
+				texto := make([]byte, aux.Size())
+				ficheiro.Read(texto)
+				fmt.Println(string(texto))
+				fmt.Println("")
+				ficheiro.Close()
 			}
-			aux, ai := ficheiro.Stat()
-			if ai != nil {
-				panic(ai)
-			}
-			tam := aux.Size()
-			texto := make([]byte, tam)
-			ficheiro.Read(texto)
-			fmt.Println(string(texto))
-			fmt.Println("")
-			ficheiro.Close()
 		}
 	}
 }
