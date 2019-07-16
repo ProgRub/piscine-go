@@ -5,11 +5,6 @@ import (
 	"os"
 )
 
-func check(e error) {
-	if e != nil {
-		panic(e)
-	}
-}
 func main() {
 	arguments := os.Args
 	if len(arguments) == 1 {
@@ -18,9 +13,15 @@ func main() {
 		fmt.Println("Too many arguments")
 	} else {
 		ficheiro, err := os.Open(arguments[1])
-		check(err)
+		if err != nil {
+			fmt.Println(err.Error())
+			return
+		}
 		aux, ai := ficheiro.Stat()
-		check(ai)
+		if ai != nil {
+			fmt.Println(ai.Error())
+			return
+		}
 		tam := aux.Size()
 		texto := make([]byte, tam)
 		ficheiro.Read(texto)
