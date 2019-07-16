@@ -4,13 +4,12 @@ import (
 	"bufio"
 	"fmt"
 	"os"
-	"strings"
 )
 
 func main() {
 	arguments := os.Args
 	if len(arguments) == 1 {
-		Reader := bufio.NewReader(os.Stdin)
+		/* Reader := bufio.NewReader(os.Stdin)
 		in, err := Reader.ReadString('\n')
 		in = strings.Replace(in, "\n", "", -1)
 		if err != nil {
@@ -19,7 +18,10 @@ func main() {
 			if in != "" {
 				fmt.Println(in)
 			}
-		}
+		} */
+		scanner := bufio.NewScanner(os.Stdin)
+		scanner.Scan()
+		fmt.Println(scanner.Text())
 	} else {
 		for i := 1; i < len(arguments); i++ {
 			ficheiro, e := os.Open(arguments[i])
