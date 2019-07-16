@@ -20,6 +20,7 @@ func main() {
 			ficheiro, e := os.Open(arguments[i])
 			if e != nil {
 				fmt.Println(e.Error())
+				break
 			} else {
 				aux, _ := ficheiro.Stat()
 				texto := make([]byte, aux.Size())
