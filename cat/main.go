@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"strings"
 )
 
 func main() {
@@ -11,10 +12,11 @@ func main() {
 	if len(arguments) == 1 {
 		Reader := bufio.NewReader(os.Stdin)
 		in, err := Reader.ReadString('\n')
-		if err != nil && in != "\n" {
+		in = strings.Replace(in, "\n", "", -1)
+		if err != nil {
 			fmt.Println(err.Error())
 		} else {
-			if in != "\n" {
+			if in != "" {
 				fmt.Println(in)
 			}
 		}
