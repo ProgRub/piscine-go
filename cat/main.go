@@ -11,12 +11,10 @@ func main() {
 	if len(arguments) == 1 {
 		reader := bufio.NewReader(os.Stdin)
 		util, err := reader.ReadString('\n')
-		if err != nil {
+		if err != nil && util != "" {
 			fmt.Println(err.Error())
 		} else {
-			if len([]rune(util)) >= 1 && int([]rune(util)[0]) == 10 {
-				fmt.Println()
-			} else {
+			if util != "\n" {
 				fmt.Println(util)
 			}
 		}
