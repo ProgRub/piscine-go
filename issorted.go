@@ -1,11 +1,22 @@
 package piscine
 
 func IsSorted(f func(a, b int) int, tab []int) bool {
+	return menorMaior(f, tab) || maiorMenor(f, tab)
+}
+
+func menorMaior(f func(a, b int) int, tab []int) bool {
 	for i := 0; i < len(tab); i++ {
 		if f(tab[i], tab[i+1]) > 0 {
-			if !IsSorted(f, IntRev(tab)) {
-				return false
-			}
+			return false
+		}
+	}
+	return true
+}
+
+func maiorMenor(f func(a, b int) int, tab []int) bool {
+	for i := len(tab) - 1; i > 0; i-- {
+		if f(tab[i], tab[i-1]) > 0 {
+			return false
 		}
 	}
 	return true
@@ -18,14 +29,4 @@ func comp(a, b int) int {
 	} else {
 		return 0
 	}
-}
-
-func IntRev(s []int) []int {
-	final := make([]int, len(s))
-	i := 0
-	for index := len(s) - 1; index >= 0; index-- {
-		final[i] = s[index]
-		i++
-	}
-	return final
 }
