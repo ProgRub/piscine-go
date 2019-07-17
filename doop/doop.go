@@ -26,7 +26,7 @@ func main() {
 		}
 		if int(operador[0]) == 37 {
 			if b == 0 {
-				fmt.Println("No modulo by 0")
+				fmt.Println("No Modulo by 0")
 			} else {
 				fmt.Println(a % b)
 			}
