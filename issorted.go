@@ -2,11 +2,9 @@ package piscine
 
 func IsSorted(f func(a, b int) int, tab []int) bool {
 	for i := 0; i < len(tab); i++ {
-		for j := i + 1; j < len(tab); j++ {
-			if f(tab[i], tab[j]) > 0 {
-				if !IsSorted(f, IntRev(tab)) {
-					return false
-				}
+		if f(tab[i], tab[i+1]) > 0 {
+			if !IsSorted(f, IntRev(tab)) {
+				return false
 			}
 		}
 	}
