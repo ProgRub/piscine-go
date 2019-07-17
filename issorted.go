@@ -4,7 +4,9 @@ func IsSorted(f func(a, b int) int, tab []int) bool {
 	for i := 0; i < len(tab); i++ {
 		for j := i + 1; j < len(tab); j++ {
 			if f(tab[i], tab[j]) > 0 {
-				return false
+				if !IsSorted(f, IntRev(tab)) {
+					return false
+				}
 			}
 		}
 	}
@@ -18,4 +20,14 @@ func comp(a, b int) int {
 	} else {
 		return 0
 	}
+}
+
+func IntRev(s []int) []int {
+	final := make([]int, len(s))
+	i := 0
+	for index := len(s) - 1; index >= 0; index-- {
+		final[i] = s[index]
+		i++
+	}
+	return final
 }
