@@ -18,9 +18,10 @@ func ListReverse(l *List) {
 			anterior := l.Head
 			meio := l.Head.Next
 			proximo := l.Head.Next.Next
-			l.Head.Next = nil
-			l.Head = l.Tail
-			l.Tail = anterior
+			l.Head.Next = nil /*
+				l.Head = l.Tail
+				l.Tail = anterior */
+
 			for proximo != nil {
 				meio.Next = anterior
 				anterior = meio
@@ -28,13 +29,16 @@ func ListReverse(l *List) {
 				proximo = proximo.Next
 			}
 			meio.Next = anterior
+			l.Head = meio
 
 		} else if ListSize(l) == 2 {
-			l.Tail.Next = l.Head
+			/* 			l.Tail.Next = l.Head
+			 */aux2 := l.Head.Next
 			l.Head.Next = nil
-			aux := l.Head
-			l.Head = l.Tail
-			l.Tail = aux
+			aux2.Next = l.Head
+			l.Head = aux2 /*
+				l.Head = l.Tail
+				l.Tail = aux */
 		}
 	}
 }
