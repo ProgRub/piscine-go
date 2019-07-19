@@ -32,6 +32,9 @@ func ListReverse(l *List) {
 		} else if ListSize(l) == 2 {
 			l.Tail.Next = l.Head
 			l.Head.Next = nil
+			aux := l.Head
+			l.Head = l.Tail
+			l.Tail = aux
 		}
 	}
 }
