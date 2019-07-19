@@ -10,12 +10,11 @@ func ListReverse(l *List) {
 				itera = itera.Next
 			}
 			pos := 0
-			final := &List{Head: nil, Tail: nil}
+			ListClear(l)
 			for pos < len(dados) {
-				ListPushFront(final, dados[pos])
+				ListPushFront(l, dados[pos])
 				pos++
 			}
-			*l = *final
 		}
 	}
 }
