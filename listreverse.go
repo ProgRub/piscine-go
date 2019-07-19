@@ -1,9 +1,9 @@
 package piscine
 
 func ListReverse(l *List) {
-	if l.Head != nil {
-		itera := l.Head
+	if l.Head != nil && ListSize(l) > 1 {
 		dados := make([]interface{}, ListSize(l))
+		itera := l.Head
 		for itera != nil {
 			dados = append(dados, itera.Data)
 			itera = itera.Next
