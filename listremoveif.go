@@ -1,26 +1,24 @@
 package piscine
 
 func ListRemoveIf(l *List, data_ref interface{}) {
+	for l.Head != nil && CompStr(l.Head.Data, data_ref) {
+		l.Head = l.Head.Next
+	}
 	if l.Head != nil {
-		if CompStr(l.Head.Data, data_ref) {
-			if l.Head.Next != nil {
-				l.Head = l.Head.Next
-				ListRemoveIf(l, data_ref)
+		anterior := l.Head
+		itera := anterior.Next
+		for itera != nil {
+			if CompStr(itera.Data, data_ref) {
+				anterior.Next = itera.Next
+				if itera.Next == nil {
+					l.Tail = anterior
+				}
 			} else {
-				l.Head = nil
-				l.Tail = nil
-				return
-			}
-		}
-		itera := l.Head
-		for itera.Next.Next != nil {
-			if CompStr(itera.Next.Data, data_ref) {
-				itera.Next = itera.Next.Next
+				anterior = anterior.Next
 			}
 			itera = itera.Next
 		}
-		if CompStr(itera.Next.Data, data_ref) {
-			itera.Next = nil
-		}
+	} else {
+		l.Tail = nil
 	}
 }
