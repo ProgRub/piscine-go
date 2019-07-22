@@ -7,18 +7,17 @@ func SortListInsert(l *NodeI, data_ref int) *NodeI {
 		l = novo
 		return l
 	}
-	itera := l
-	for itera.Next.Next != nil {
-		if data_ref < itera.Next.Data {
-			novo.Next = itera.Next
-			itera.Next = novo
+	anterior := l
+	itera := l.Next
+	for itera != nil {
+		if data_ref < itera.Data {
+			novo.Next = itera
+			anterior.Next = novo
 			return l
 		}
+		anterior = anterior.Next
 		itera = itera.Next
 	}
-	if data_ref < itera.Next.Data {
-		novo.Next = itera.Next
-		itera.Next = novo
-	}
+	anterior.Next = novo
 	return l
 }
