@@ -1,44 +1,17 @@
 package piscine
 
 func ListReverse(l *List) {
-	if l.Head != nil {
-		if ListSize(l) > 2 {
-			/* dados := make([]interface{}, 0)
-			itera := l.Head
-			for itera != nil {
-				dados = append(dados, itera.Data)
-				itera = itera.Next
-			}
-			pos := 0
-			ListClear(l)
-			for pos < len(dados) {
-				ListPushFront(l, dados[pos])
-				pos++
-			} */
-			anterior := l.Head
-			meio := l.Head.Next
-			proximo := l.Head.Next.Next
-			l.Head.Next = nil /*
-				l.Head = l.Tail
-				l.Tail = anterior */
-
-			for proximo != nil {
-				meio.Next = anterior
-				anterior = meio
-				meio = proximo
-				proximo = proximo.Next
-			}
-			meio.Next = anterior
-			l.Head = meio
-
-		} else if ListSize(l) == 2 {
-			/* 			l.Tail.Next = l.Head
-			 */aux2 := l.Head.Next
-			l.Head.Next = nil
-			aux2.Next = l.Head
-			l.Head = aux2 /*
-				l.Head = l.Tail
-				l.Tail = aux */
-		}
+	anterior := &NodeL{}
+	anterior = nil
+	meio := l.Head
+	proximo := &NodeL{}
+	proximo = nil
+	l.Head = l.Tail
+	l.Tail = meio
+	for meio != nil {
+		proximo = meio.Next
+		meio.Next = anterior
+		anterior = meio
+		meio = proximo
 	}
 }
