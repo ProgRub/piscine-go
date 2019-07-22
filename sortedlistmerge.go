@@ -1,10 +1,10 @@
 package piscine
 
 func SortedListMerge(n1 *NodeI, n2 *NodeI) *NodeI {
-	itera := n1
-	for itera.Next != nil {
+	itera := n2
+	for itera != nil {
+		n1 = SortListInsert(n1, itera.Data)
 		itera = itera.Next
 	}
-	itera.Next = n2
-	return ListSort(n1)
+	return n1
 }
