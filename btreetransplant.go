@@ -8,9 +8,12 @@ func BTreeTransplant(root, node, rplc *TreeNode) *TreeNode {
 		} else if node.Data > copia.Data {
 			copia = copia.Right
 		} else {
+			rplc.Parent = copia.Parent
+			rplc.Left = copia.Left
+			rplc.Right = copia.Right
 			if copia != root {
 				anterior := copia.Parent
-				if anterior.Left == copia {
+				if anterior.Left.Data == copia.Data {
 					anterior.Left = rplc
 				} else {
 					anterior.Right = rplc
@@ -18,9 +21,6 @@ func BTreeTransplant(root, node, rplc *TreeNode) *TreeNode {
 			} else {
 				root = rplc
 			}
-			rplc.Parent = copia.Parent
-			rplc.Left = copia.Left
-			rplc.Right = copia.Right
 			copia = nil
 			return root
 		}
