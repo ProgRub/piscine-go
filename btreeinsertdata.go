@@ -14,14 +14,14 @@ func BTreeInsertData(root *TreeNode, data string) *TreeNode {
 			novo := &TreeNode{Data: data, Left: nil, Right: nil, Parent: root}
 			root.Left = novo
 		} else {
-			root = BTreeInsertData(root.Left, data)
+			BTreeInsertData(root.Left, data)
 		}
 	} else {
 		if root.Right == nil {
 			novo := &TreeNode{Data: data, Left: nil, Right: nil, Parent: root}
 			root.Right = novo
 		} else {
-			root = BTreeInsertData(root.Right, data)
+			BTreeInsertData(root.Right, data)
 		}
 	}
 	return root
