@@ -15,7 +15,7 @@ func BTreeDeleteNode(root, node *TreeNode) *TreeNode {
 					aux = aux.Right
 				}
 				troca.Data = aux.Data
-				root = BTreeTransplant(root, copia, troca)
+				root = BTreeTransplant2(root, copia, troca)
 				copia = root
 				for copia != nil {
 					if copia.Data == troca.Data {
@@ -28,8 +28,12 @@ func BTreeDeleteNode(root, node *TreeNode) *TreeNode {
 					}
 				}
 			} else if copia.Right != nil {
-				pai := copia.Parent
-				pai.Right = copia.Right
+				if copia != root {
+					pai := copia.Parent
+					pai.Right = copia.Right
+				} else {
+					root = root.Right
+				}
 			} else {
 				p := copia.Parent
 				if p.Left.Data == node.Data {
@@ -45,6 +49,34 @@ func BTreeDeleteNode(root, node *TreeNode) *TreeNode {
 			copia = copia.Left
 		} else {
 			copia = copia.Right
+		}
+	}
+	return root
+}
+
+func BTreeTransplant2(root, node, rplc *TreeNode) *TreeNode {
+	copia := root
+	for copia != nil {
+		if node.Data < copia.Data {
+			copia = copia.Left
+		} else if node.Data > copia.Data {
+			copia = copia.Right
+		} else {
+			rplc.Parent = copia.Parent
+			rplc.Left = copia.Left
+			rplc.Right = copia.Right
+			if copia != root {
+				anterior := copia.Parent
+				if anterior.Left.Data == copia.Data {
+					anterior.Left = rplc
+				} else {
+					anterior.Right = rplc
+				}
+			} else {
+				root = rplc
+			}
+			copia = nil
+			return root
 		}
 	}
 	return root
