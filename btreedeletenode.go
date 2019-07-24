@@ -5,22 +5,19 @@ func BTreeDeleteNode(root, node *TreeNode) *TreeNode {
 		if root.Data == node.Data {
 			if root.Left != nil {
 				aux := root.Left
-				for aux.Right != nil {
-					aux = aux.Right
-				}
-				if aux == root.Left {
+				if aux.Right == nil {
 					root = root.Left
 					root.Parent = nil
 					return root
 				}
-				troca := aux.Data
-				root.Data = troca
-				aux.Data = root.Data
-				aux = aux.Parent
-				if aux.Left != nil && aux.Left.Data == node.Data {
-					aux.Left = nil
-				} else {
-					aux.Right = nil
+				troca := BTreeMax(aux)
+				auxiliar := root.Data
+				root.Data = troca.Data
+				troca.Data = auxiliar
+				aux = troca.Parent
+				aux.Right = troca.Left
+				if aux.Right != nil {
+					aux.Right.Parent = aux
 				}
 			} else if root.Right != nil {
 				root = root.Right
@@ -38,32 +35,28 @@ func BTreeDeleteNode(root, node *TreeNode) *TreeNode {
 					if aux.Right == nil {
 						aux := itera.Parent
 						itera = itera.Left
-						itera.Parent = aux
+						if itera != nil {
+							itera.Parent = aux
+						}
 						aux.Left = itera
 						return root
 					}
-					for aux.Right != nil {
-						aux = aux.Right
-					}
-					troca := aux.Data
-					itera.Data = troca
-					aux.Data = itera.Data
-					aux = aux.Parent
-					if aux.Left != nil && aux.Left.Data == node.Data {
-						aux.Left = nil
-					} else {
-						aux.Right = nil
-					}
+					troca := BTreeMax(aux)
+					auxiliar := itera.Data
+					itera.Data = troca.Data
+					troca.Data = auxiliar
+					aux = troca.Parent
+					aux.Right = troca.Left
+					aux.Right.Parent = aux
 				} else if itera.Right != nil {
 					aux := itera.Right.Data
 					itera.Data = aux
 					tempLeft := itera.Right.Left
 					tempRight := itera.Right.Right
+					tempLeft.Parent = itera
+					tempRight.Parent = itera
 					itera.Right = tempRight
 					itera.Left = tempLeft
-					if itera.Data == root.Data {
-						root = itera
-					}
 				} else {
 					p := itera.Parent
 					if p.Left != nil && p.Left.Data == node.Data {
