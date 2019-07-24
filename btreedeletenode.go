@@ -5,33 +5,32 @@ func BTreeDeleteNode(root, node *TreeNode) *TreeNode {
 		root = nil
 		return root
 	}
-	copia := root
-	var troca string
-	for copia != nil {
-		if copia.Data == node.Data {
-			if copia.Left != nil {
-				aux := copia.Left
+	itera := root
+	for itera != nil {
+		if itera.Data == node.Data {
+			if itera.Left != nil {
+				aux := itera.Left
 				for aux.Right != nil {
 					aux = aux.Right
 				}
-				troca = aux.Data
-				copia.Data = troca
-				aux.Data = copia.Data
+				troca := aux.Data
+				itera.Data = troca
+				aux.Data = itera.Data
 				aux = aux.Parent
-				if aux.Left.Data == node.Data {
+				if aux.Left != nil && aux.Left.Data == node.Data {
 					aux.Left = nil
 				} else {
 					aux.Right = nil
 				}
-			} else if copia.Right != nil {
-				aux := copia.Right
-				copia.Data = aux.Data
-				copia.Right = nil
-				if copia == root {
-					root = copia
+			} else if itera.Right != nil {
+				aux := itera.Right.Data
+				itera.Data = aux
+				itera.Right = nil
+				if itera.Data == root.Data {
+					root = itera
 				}
 			} else {
-				p := copia.Parent
+				p := itera.Parent
 				if p.Left.Data == node.Data {
 					p.Left = nil
 				} else {
@@ -40,10 +39,10 @@ func BTreeDeleteNode(root, node *TreeNode) *TreeNode {
 				return root
 			}
 			return root
-		} else if node.Data < copia.Data {
-			copia = copia.Left
+		} else if node.Data < itera.Data {
+			itera = itera.Left
 		} else {
-			copia = copia.Right
+			itera = itera.Right
 		}
 	}
 	return root
