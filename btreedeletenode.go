@@ -2,15 +2,46 @@ package piscine
 
 func BTreeDeleteNode(root, node *TreeNode) *TreeNode {
 	if node != nil {
-		if root.Left == nil && root.Right == nil && root.Data == node.Data {
-			root = nil
+		if root.Data == node.Data {
+			if root.Left != nil {
+				aux := root.Left
+				for aux.Right != nil {
+					aux = aux.Right
+				}
+				if aux == root.Left {
+					root = root.Left
+					root.Parent = nil
+					return root
+				}
+				troca := aux.Data
+				root.Data = troca
+				aux.Data = root.Data
+				aux = aux.Parent
+				if aux.Left != nil && aux.Left.Data == node.Data {
+					aux.Left = nil
+				} else {
+					aux.Right = nil
+				}
+			} else if root.Right != nil {
+				root = root.Right
+				root.Parent = nil
+			} else {
+				root = nil
+			}
 			return root
 		}
 		itera := root
 		for itera != nil {
-			if itera.Data == node.Data {
+			if itera.Data == node.Data && itera != root {
 				if itera.Left != nil {
 					aux := itera.Left
+					if aux.Right == nil {
+						aux := itera.Parent
+						itera = itera.Left
+						itera.Parent = aux
+						aux.Left = itera
+						return root
+					}
 					for aux.Right != nil {
 						aux = aux.Right
 					}
