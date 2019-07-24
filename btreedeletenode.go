@@ -6,7 +6,7 @@ func BTreeDeleteNode(root, node *TreeNode) *TreeNode {
 		return root
 	}
 	copia := root
-	troca := &TreeNode{}
+	var troca string
 	for copia != nil {
 		if copia.Data == node.Data {
 			if copia.Left != nil {
@@ -14,25 +14,21 @@ func BTreeDeleteNode(root, node *TreeNode) *TreeNode {
 				for aux.Right != nil {
 					aux = aux.Right
 				}
-				troca.Data = aux.Data
-				root = BTreeTransplant2(root, copia, troca)
-				copia = root
-				for copia != nil {
-					if copia.Data == troca.Data {
-						copia.Left = nil
-						break
-					} else if troca.Data < copia.Data {
-						copia = copia.Left
-					} else {
-						copia = copia.Right
-					}
+				troca = aux.Data
+				copia.Data = troca
+				aux.Data = copia.Data
+				aux = aux.Parent
+				if aux.Left.Data == node.Data {
+					aux.Left = nil
+				} else {
+					aux.Right = nil
 				}
 			} else if copia.Right != nil {
-				if copia != root {
-					pai := copia.Parent
-					pai.Right = copia.Right
-				} else {
-					root = root.Right
+				aux := copia.Right
+				copia.Data = aux.Data
+				copia.Right = nil
+				if copia == root {
+					root = copia
 				}
 			} else {
 				p := copia.Parent
@@ -43,40 +39,11 @@ func BTreeDeleteNode(root, node *TreeNode) *TreeNode {
 				}
 				return root
 			}
-
 			return root
 		} else if node.Data < copia.Data {
 			copia = copia.Left
 		} else {
 			copia = copia.Right
-		}
-	}
-	return root
-}
-
-func BTreeTransplant2(root, node, rplc *TreeNode) *TreeNode {
-	copia := root
-	for copia != nil {
-		if node.Data < copia.Data {
-			copia = copia.Left
-		} else if node.Data > copia.Data {
-			copia = copia.Right
-		} else {
-			rplc.Parent = copia.Parent
-			rplc.Left = copia.Left
-			rplc.Right = copia.Right
-			if copia != root {
-				anterior := copia.Parent
-				if anterior.Left.Data == copia.Data {
-					anterior.Left = rplc
-				} else {
-					anterior.Right = rplc
-				}
-			} else {
-				root = rplc
-			}
-			copia = nil
-			return root
 		}
 	}
 	return root
