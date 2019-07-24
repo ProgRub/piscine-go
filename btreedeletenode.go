@@ -2,7 +2,7 @@ package piscine
 
 func BTreeDeleteNode(root, node *TreeNode) *TreeNode {
 	if node != nil {
-		if root.Data == node.Data {
+		if root == node {
 			if root.Left != nil {
 				aux := root.Left
 				if aux.Right == nil {
@@ -29,7 +29,7 @@ func BTreeDeleteNode(root, node *TreeNode) *TreeNode {
 		}
 		itera := root
 		for itera != nil {
-			if itera.Data == node.Data && itera != root {
+			if itera == node && itera != root {
 				if itera.Left != nil {
 					aux := itera.Left
 					if aux.Right == nil {
