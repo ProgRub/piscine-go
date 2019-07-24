@@ -25,7 +25,10 @@ func BTreeDeleteNode(root, node *TreeNode) *TreeNode {
 			} else if itera.Right != nil {
 				aux := itera.Right.Data
 				itera.Data = aux
-				itera.Right = nil
+				tempLeft := itera.Right.Left
+				tempRight := itera.Right.Right
+				itera.Right = tempRight
+				itera.Left = tempLeft
 				if itera.Data == root.Data {
 					root = itera
 				}
